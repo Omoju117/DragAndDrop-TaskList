@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/DragAndDrop-TaskList/static/css/main.e9f150e8.chunk.css",
+    "main.css": "/DragAndDrop-TaskList/static/css/main.67f84035.chunk.css",
     "main.js": "/DragAndDrop-TaskList/static/js/main.e6e983b2.chunk.js",
     "main.js.map": "/DragAndDrop-TaskList/static/js/main.e6e983b2.chunk.js.map",
     "runtime-main.js": "/DragAndDrop-TaskList/static/js/runtime-main.6f7aaf71.js",
@@ -12,7 +12,7 @@
     "static/js/3.edde4df8.chunk.js.map": "/DragAndDrop-TaskList/static/js/3.edde4df8.chunk.js.map",
     "index.html": "/DragAndDrop-TaskList/index.html",
     "static/css/2.8cb7becf.chunk.css.map": "/DragAndDrop-TaskList/static/css/2.8cb7becf.chunk.css.map",
-    "static/css/main.e9f150e8.chunk.css.map": "/DragAndDrop-TaskList/static/css/main.e9f150e8.chunk.css.map",
+    "static/css/main.67f84035.chunk.css.map": "/DragAndDrop-TaskList/static/css/main.67f84035.chunk.css.map",
     "static/js/2.45917ec9.chunk.js.LICENSE.txt": "/DragAndDrop-TaskList/static/js/2.45917ec9.chunk.js.LICENSE.txt",
     "static/media/App.css": "/DragAndDrop-TaskList/static/media/Header-image.46ad105e.png",
     "static/media/semantic.min.css": "/DragAndDrop-TaskList/static/media/outline-icons.ddae9b1b.woff"
@@ -21,7 +21,7 @@
     "static/js/runtime-main.6f7aaf71.js",
     "static/css/2.8cb7becf.chunk.css",
     "static/js/2.45917ec9.chunk.js",
-    "static/css/main.e9f150e8.chunk.css",
+    "static/css/main.67f84035.chunk.css",
     "static/js/main.e6e983b2.chunk.js"
   ]
 }
