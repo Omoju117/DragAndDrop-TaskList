@@ -1,27 +1,27 @@
 {
   "files": {
-    "main.css": "/DragAndDrop-TaskList/static/css/main.67f84035.chunk.css",
-    "main.js": "/DragAndDrop-TaskList/static/js/main.e6e983b2.chunk.js",
-    "main.js.map": "/DragAndDrop-TaskList/static/js/main.e6e983b2.chunk.js.map",
+    "main.css": "/DragAndDrop-TaskList/static/css/main.f235b7d8.chunk.css",
+    "main.js": "/DragAndDrop-TaskList/static/js/main.c8a6a816.chunk.js",
+    "main.js.map": "/DragAndDrop-TaskList/static/js/main.c8a6a816.chunk.js.map",
     "runtime-main.js": "/DragAndDrop-TaskList/static/js/runtime-main.6f7aaf71.js",
     "runtime-main.js.map": "/DragAndDrop-TaskList/static/js/runtime-main.6f7aaf71.js.map",
     "static/css/2.8cb7becf.chunk.css": "/DragAndDrop-TaskList/static/css/2.8cb7becf.chunk.css",
-    "static/js/2.45917ec9.chunk.js": "/DragAndDrop-TaskList/static/js/2.45917ec9.chunk.js",
-    "static/js/2.45917ec9.chunk.js.map": "/DragAndDrop-TaskList/static/js/2.45917ec9.chunk.js.map",
+    "static/js/2.0defc6dd.chunk.js": "/DragAndDrop-TaskList/static/js/2.0defc6dd.chunk.js",
+    "static/js/2.0defc6dd.chunk.js.map": "/DragAndDrop-TaskList/static/js/2.0defc6dd.chunk.js.map",
     "static/js/3.edde4df8.chunk.js": "/DragAndDrop-TaskList/static/js/3.edde4df8.chunk.js",
     "static/js/3.edde4df8.chunk.js.map": "/DragAndDrop-TaskList/static/js/3.edde4df8.chunk.js.map",
     "index.html": "/DragAndDrop-TaskList/index.html",
     "static/css/2.8cb7becf.chunk.css.map": "/DragAndDrop-TaskList/static/css/2.8cb7becf.chunk.css.map",
-    "static/css/main.67f84035.chunk.css.map": "/DragAndDrop-TaskList/static/css/main.67f84035.chunk.css.map",
-    "static/js/2.45917ec9.chunk.js.LICENSE.txt": "/DragAndDrop-TaskList/static/js/2.45917ec9.chunk.js.LICENSE.txt",
-    "static/media/App.css": "/DragAndDrop-TaskList/static/media/Header-image.46ad105e.png",
+    "static/css/main.f235b7d8.chunk.css.map": "/DragAndDrop-TaskList/static/css/main.f235b7d8.chunk.css.map",
+    "static/js/2.0defc6dd.chunk.js.LICENSE.txt": "/DragAndDrop-TaskList/static/js/2.0defc6dd.chunk.js.LICENSE.txt",
+    "static/media/App.css": "/DragAndDrop-TaskList/static/media/Introduction_image.06dab1a5.png",
     "static/media/semantic.min.css": "/DragAndDrop-TaskList/static/media/outline-icons.ddae9b1b.woff"
   },
   "entrypoints": [
     "static/js/runtime-main.6f7aaf71.js",
     "static/css/2.8cb7becf.chunk.css",
-    "static/js/2.45917ec9.chunk.js",
-    "static/css/main.67f84035.chunk.css",
-    "static/js/main.e6e983b2.chunk.js"
+    "static/js/2.0defc6dd.chunk.js",
+    "static/css/main.f235b7d8.chunk.css",
+    "static/js/main.c8a6a816.chunk.js"
   ]
 }
