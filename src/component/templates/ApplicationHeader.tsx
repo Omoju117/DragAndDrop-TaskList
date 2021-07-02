@@ -1,5 +1,6 @@
 import { VFC } from 'react';
 
+/* ----- アプリケーション本体のヘッダー ------ */
 const ApplicationHeader: VFC = () => (
   <>
     <header className="site-header">

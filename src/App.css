@@ -1,10 +1,10 @@
-/* TaskList */
+/* -----タスクのリスト本体に関するスタイル----- */
 .task-list-container {
-  width: 700px !important;
-  max-width: none !important;
+  width: 700px;
+  max-width: none;
   margin-top: 48px;
   margin-left: 400px;
-  font-size: 1rem !important;
+  font-size: 14px;
 }
 
 .task {
@@ -20,11 +20,32 @@
   float: right;
 }
 
-.dragHandleSelector {
+.drag-handle-selector {
   float: right;
+  cursor: pointer;
 }
 
-.inputForm {
+.task-icon {
+  float: left;
+}
+
+.task-header {
+  float: left;
+  margin-top: 5px;
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 14px;
+}
+
+.task-number {
+  float: left;
+  margin-top: 3px;
+  margin-right: 6px;
+  margin-left: 3px;
+  font-size: 16px;
+}
+
+/* ------入力フォームに関するスタイル------ */
+.input-form {
   width: 400px;
   height: 40px;
   margin-right: 4px;
@@ -33,26 +54,19 @@
   outline: none;
 }
 
-.taskIcon {
-  float: left;
-}
-
-.taskHeader {
-  float: left;
-  margin-top: 5px;
-  font-family: Helvetica, Arial, sans-serif;
+/* -----タスクの編集中モードに関するスタイル----- */
+.edit-input-form {
+  z-index: 10;
+  width: 500px;
+  height: 28px;
   font-size: 14px;
+  background: #ebcb3d;
+  border: none;
+  border-radius: 4px;
+  outline: none;
 }
 
-.taskNumber {
-  float: left;
-  margin-top: 3px;
-  margin-right: 6px;
-  margin-left: 3px;
-  font-size: 16px;
-}
-
-/* placeholder */
+/* ------placeholder------ */
 input:focus::-webkit-input-placeholder {
   color: transparent;
 }
@@ -69,7 +83,7 @@ input:focus::placeholder {
   color: transparent;
 }
 
-/* ApplicationHeader */
+/* ------ApplicationHeader------ */
 .site-header {
   width: 100%;
   padding: 24px 24px;
@@ -78,4 +92,47 @@ input:focus::placeholder {
 
 .site-header-inner {
   display: flex;
+}
+
+/* ------Introduction------ */
+.introduction-space {
+  position: absolute;
+  top: 60px;
+  left: 1080px;
+  width: 350px;
+  height: 350px;
+  background: url(Introduction_image.png) center / cover;
+  opacity: 1;
+  transition: all 1s;
+}
+
+.introduction-space button {
+  position: absolute;
+  top: 125px;
+  left: 175px;
+}
+
+.introduction-space-edit {
+  position: absolute;
+  top: 200px;
+  left: 75px;
+  width: 350px;
+  height: 350px;
+  background: url(Introduction_edit.png) center / cover;
+  opacity: 1;
+  transition: all 1s;
+}
+
+.introduction-space-edit button {
+  position: absolute;
+  top: 190px;
+  left: 140px;
+}
+
+.introduction-space-none {
+  opacity: 0;
+}
+
+.event-invalid {
+  pointer-events: none;
 }
