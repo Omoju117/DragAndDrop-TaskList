@@ -6,10 +6,13 @@ import { useState, VFC } from 'react';
 import { Item, Icon, Button } from 'semantic-ui-react';
 import { Container, Draggable, DropResult } from 'react-smooth-dnd';
 import arrayMove from 'array-move';
+import { useDispatch, useSelector } from 'react-redux';
 import ResetButton from '../atoms/ResetButton';
 import AddButton from '../atoms/AddButton';
 import InputForm from '../atoms/InputForm';
 import Introduction from '../atoms/Intoduction';
+// eslint-disable-next-line import/no-cycle
+import { TaskListState } from '../../reducer';
 
 /* ---------タスクリスト本体のコンポーネント--------- */
 
@@ -19,9 +22,21 @@ export type Task = {
   title: string;
   mode: string;
 };
+
+type Props = {
+  add?: (id: number, taskName: string) => void;
+  del?: (index: number) => void;
+  edit?: () => void;
+  refresh?: (list: Task[]) => void;
+};
 /* -------------------------------- */
 
-const TaskList: VFC = () => {
+const TaskList: VFC<Props> = ({
+  add = () => undefined,
+  del = () => undefined,
+  edit = () => undefined,
+  refresh = () => undefined,
+}) => {
   /* --------状態(state)の定義------------- */
 
   // タスク名
@@ -30,45 +45,28 @@ const TaskList: VFC = () => {
   const [idCnt, setIdCnt] = useState(1);
   // 追加ボタンの活性制御
   const [disabled, setDisabled] = useState(true);
-  // タスクのリスト本体
-  const [tasks, setTask] = useState<Task[]>([
-    {
-      id: idCnt,
-      title: 'You can Add tasks, Delete, and Sort.',
-      mode: 'display',
-    },
-    {
-      id: 999999998,
-      title: 'Happy Tasking!',
-      mode: 'display',
-    },
-    {
-      id: 999999999,
-      title: '👌',
-      mode: 'display',
-    },
-  ]);
 
-  // タスクの編集可能にするためのオブジェクト
+  // タスクを編集可能にするためのオブジェクト
   const [editTask, setEditTask] = useState<Task>({
     id: 0,
     title: '',
     mode: '',
   });
 
+  /* ------------Store,Reducerに関する------------ */
+  // Storeに格納してあるタスクリストの本体
+  const taskListState = useSelector<TaskListState, Task[]>((state) => state);
+
+  // dispatcher
+  const dispatch = useDispatch();
+
   /* ------------タスクの追加に関する処理------------ */
   // ---タスクの追加
   const addTask = () => {
     const newIdCnt = idCnt + 1;
     setIdCnt(newIdCnt);
-    setTask([
-      ...tasks,
-      {
-        id: newIdCnt,
-        title: taskName,
-        mode: 'display',
-      },
-    ]);
+    // call reducer
+    dispatch(add(newIdCnt, taskName));
 
     // 入力された値をクリアーする
     setTaskName('');
@@ -87,12 +85,6 @@ const TaskList: VFC = () => {
   };
 
   /* ------------タスクの削除に関する処理------------ */
-  // 1つのタスクの削除
-  const deleteTask = (index: number) => {
-    const newTasks = [...tasks];
-    newTasks.splice(index, 1);
-    setTask(newTasks);
-  };
 
   // ---全てのタスクのリセット
   const reset = () => {
@@ -102,7 +94,8 @@ const TaskList: VFC = () => {
       return;
     }
 
-    setTask([]);
+    // setTask([]);
+    dispatch(refresh([]));
   };
 
   /* ------タスクをドラッグ&ドロップでソート可能にするための関数------ */
@@ -110,9 +103,16 @@ const TaskList: VFC = () => {
   const onDrop = (dropResult: DropResult) => {
     // `DropResult` で型定義
     const { removedIndex, addedIndex } = dropResult;
-    setTask((tasksArray) =>
-      arrayMove(tasksArray, removedIndex || 0, addedIndex || 0),
+    // setTask((tasksArray) =>
+    //   arrayMove(tasksArray, removedIndex || 0, addedIndex || 0),
+
+    let newTaskListState = [...taskListState];
+    newTaskListState = arrayMove(
+      newTaskListState,
+      removedIndex || 0,
+      addedIndex || 0,
     );
+    dispatch(refresh(newTaskListState));
   };
 
   /* ------------タスクのUpdateに関する処理------------ */
@@ -130,14 +130,15 @@ const TaskList: VFC = () => {
 
   // 編集用タスクに引数のタスクをセットして編集可能にする処理
   const editTaskTitle = (task: Task) => {
-    if (tasks.filter((t) => t.mode === 'edit').length > 0) {
+    if (taskListState.filter((t) => t.mode === 'edit').length > 0) {
       return;
     }
     const tempTask = task;
     tempTask.mode = 'edit';
 
     // タスクのリストを更新して再レンダリングさせる
-    setTask([...tasks]);
+    // call reducer
+    dispatch(edit());
     setEditTask(task);
     toggleInvalidControlTarget();
   };
@@ -153,14 +154,17 @@ const TaskList: VFC = () => {
   const onEnterForCompleteEdit = (key: string) => {
     if (key === 'Enter') {
       // タスクリストの配列を最新化する
-      const foundEditTask = tasks.find((task: Task) => task.mode === 'edit');
+      const foundEditTask = taskListState.find(
+        (task: Task) => task.mode === 'edit',
+      );
       if (foundEditTask === undefined) {
         return;
       }
-      const newTasks = [...tasks];
+      const newTasks = [...taskListState];
       editTask.mode = 'display';
       newTasks[newTasks.indexOf(foundEditTask)] = editTask;
-      setTask(newTasks);
+      // call reducer
+      dispatch(refresh(newTasks));
       toggleInvalidControlTarget();
     }
   };
@@ -183,7 +187,7 @@ const TaskList: VFC = () => {
             lockAxis="y"
             onDrop={onDrop}
           >
-            {tasks.map((task, index) => (
+            {taskListState.map((task, index) => (
               <Draggable key={task.id}>
                 <Item key={task.id} className="task">
                   <Item.Content>
@@ -214,7 +218,7 @@ const TaskList: VFC = () => {
                       className="delete controlItem"
                       color="yellow"
                       size="mini"
-                      onClick={() => deleteTask(index)}
+                      onClick={() => dispatch(del(index))}
                     >
                       ×
                     </Button>
