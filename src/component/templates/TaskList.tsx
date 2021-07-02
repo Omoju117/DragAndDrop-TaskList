@@ -11,6 +11,8 @@ import AddButton from '../atoms/AddButton';
 import InputForm from '../atoms/InputForm';
 import Introduction from '../atoms/Intoduction';
 
+/* ---------タスクリスト本体のコンポーネント--------- */
+
 /* ----------タスクの型定義---------- */
 export type Task = {
   id: number;
