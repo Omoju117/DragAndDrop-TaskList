@@ -1,6 +1,6 @@
 import { VFC } from 'react';
 import ApplicationHeader from '../templates/ApplicationHeader';
-import TaskList from '../templates/TaskList';
+import TaskList from '../../container/templates/TaskList';
 import IntroductionEdit from '../atoms/IntoductionEdit';
 import { addTask, deleteTask, editTask, refreshTask } from '../../actions';
 

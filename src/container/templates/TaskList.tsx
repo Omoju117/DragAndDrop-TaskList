@@ -5,12 +5,12 @@ import { Item } from 'semantic-ui-react';
 import { Container, Draggable, DropResult } from 'react-smooth-dnd';
 import arrayMove from 'array-move';
 import { useDispatch, useSelector } from 'react-redux';
-import ResetButton from '../atoms/ResetButton';
-import AddButton from '../atoms/AddButton';
-import InputForm from '../atoms/InputForm';
-import Introduction from '../atoms/Intoduction';
+import ResetButton from '../../component/atoms/ResetButton';
+import AddButton from '../../component/atoms/AddButton';
+import InputForm from '../../component/atoms/InputForm';
+import Introduction from '../../component/atoms/Intoduction';
 import { TaskListState } from '../../reducer';
-import TaskBar from '../molecules/TaskBar';
+import TaskBar from '../../component/molecules/TaskBar';
 import { Task } from '../../Data/data';
 
 /* ---------タスクリスト本体のコンポーネント--------- */
@@ -75,6 +75,7 @@ const TaskList: VFC<Props> = ({
 
   // ---全てのタスクのリセット
   const reset = () => {
+    // eslint-disable-next-line no-alert
     const confirmAnswer = window.confirm('Do you wanna delete All Task ?');
     // キャンセルされた場合はリセットを中断
     if (!confirmAnswer) {
