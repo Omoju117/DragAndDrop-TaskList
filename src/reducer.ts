@@ -10,6 +10,16 @@ export const initialState: TaskListState = [
     title: 'You can Add tasks, Delete, and Sort.',
     mode: 'display',
   },
+  {
+    id: 99998,
+    title: 'Happy Tasking!',
+    mode: 'display',
+  },
+  {
+    id: 99999,
+    title: '👌',
+    mode: 'display',
+  },
 ];
 
 export const taskListReducer: Reducer<TaskListState, TaskListAction> = (

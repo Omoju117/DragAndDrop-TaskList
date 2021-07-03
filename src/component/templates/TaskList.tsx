@@ -3,7 +3,7 @@
 /* eslint @typescript-eslint/no-unsafe-call: 0 */
 // TODO event.targetを引数に指定できない方法を調査する。一旦問題が出ないことは確認済みなのでanyで回避。
 import { useState, VFC } from 'react';
-import { Item, Icon, Button } from 'semantic-ui-react';
+import { Item } from 'semantic-ui-react';
 import { Container, Draggable, DropResult } from 'react-smooth-dnd';
 import arrayMove from 'array-move';
 import { useDispatch, useSelector } from 'react-redux';
@@ -13,6 +13,8 @@ import InputForm from '../atoms/InputForm';
 import Introduction from '../atoms/Intoduction';
 // eslint-disable-next-line import/no-cycle
 import { TaskListState } from '../../reducer';
+// eslint-disable-next-line import/no-cycle
+import TaskBar from '../molecules/TaskBar';
 
 /* ---------タスクリスト本体のコンポーネント--------- */
 
@@ -46,14 +48,7 @@ const TaskList: VFC<Props> = ({
   // 追加ボタンの活性制御
   const [disabled, setDisabled] = useState(true);
 
-  // タスクを編集可能にするためのオブジェクト
-  const [editTask, setEditTask] = useState<Task>({
-    id: 0,
-    title: '',
-    mode: '',
-  });
-
-  /* ------------Store,Reducerに関する------------ */
+  /* ------------Store,Reducerに関する処理------------ */
   // Storeに格納してあるタスクリストの本体
   const taskListState = useSelector<TaskListState, Task[]>((state) => state);
 
@@ -84,7 +79,7 @@ const TaskList: VFC<Props> = ({
     setDisabled(!(target.value.length > 0));
   };
 
-  /* ------------タスクの削除に関する処理------------ */
+  /* ------------タスクのリセットに関する処理------------ */
 
   // ---全てのタスクのリセット
   const reset = () => {
@@ -115,60 +110,6 @@ const TaskList: VFC<Props> = ({
     dispatch(refresh(newTaskListState));
   };
 
-  /* ------------タスクのUpdateに関する処理------------ */
-
-  // タスクの編集中に他のコントロールを操作できないようにする処理
-  const toggleInvalidControlTarget = () => {
-    const targetList = document.getElementsByClassName('controlItem');
-    const tempTargetList = Array.prototype.slice.call(targetList);
-
-    tempTargetList.forEach((target) =>
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-return
-      target.classList.toggle('event-invalid'),
-    );
-  };
-
-  // 編集用タスクに引数のタスクをセットして編集可能にする処理
-  const editTaskTitle = (task: Task) => {
-    if (taskListState.filter((t) => t.mode === 'edit').length > 0) {
-      return;
-    }
-    const tempTask = task;
-    tempTask.mode = 'edit';
-
-    // タスクのリストを更新して再レンダリングさせる
-    // call reducer
-    dispatch(edit());
-    setEditTask(task);
-    toggleInvalidControlTarget();
-  };
-
-  // タスクの内容を編集する処理
-  const handleTaskTitle = (target: HTMLInputElement) => {
-    const newEditTask = { ...editTask };
-    newEditTask.title = target.value;
-    setEditTask(newEditTask);
-  };
-
-  // タスクの編集を完了する処理
-  const onEnterForCompleteEdit = (key: string) => {
-    if (key === 'Enter') {
-      // タスクリストの配列を最新化する
-      const foundEditTask = taskListState.find(
-        (task: Task) => task.mode === 'edit',
-      );
-      if (foundEditTask === undefined) {
-        return;
-      }
-      const newTasks = [...taskListState];
-      editTask.mode = 'display';
-      newTasks[newTasks.indexOf(foundEditTask)] = editTask;
-      // call reducer
-      dispatch(refresh(newTasks));
-      toggleInvalidControlTarget();
-    }
-  };
-
   /* ------------------------------------------------------ */
 
   return (
@@ -189,41 +130,13 @@ const TaskList: VFC<Props> = ({
           >
             {taskListState.map((task, index) => (
               <Draggable key={task.id}>
-                <Item key={task.id} className="task">
-                  <Item.Content>
-                    <Icon className="task-icon" name="certificate" size="big" />
-                    <span className="task-number">{index + 1}</span>
-                    {task.mode === 'edit' ? (
-                      <input
-                        className="edit-input-form"
-                        type="text"
-                        value={editTask.title}
-                        onChange={(e) => handleTaskTitle(e.target)}
-                        onKeyPress={(e) => onEnterForCompleteEdit(e.key)}
-                      />
-                    ) : (
-                      <Item.Header
-                        className="task-header"
-                        onDoubleClick={() => editTaskTitle(task)}
-                      >
-                        {task.title}
-                      </Item.Header>
-                    )}
-                    <Icon
-                      className="drag-handle-selector controlItem"
-                      name="sort"
-                      size="big"
-                    />
-                    <Button
-                      className="delete controlItem"
-                      color="yellow"
-                      size="mini"
-                      onClick={() => dispatch(del(index))}
-                    >
-                      ×
-                    </Button>
-                  </Item.Content>
-                </Item>
+                <TaskBar
+                  targetTask={task}
+                  index={index}
+                  del={del}
+                  edit={edit}
+                  refresh={refresh}
+                />
               </Draggable>
             ))}
           </Container>
