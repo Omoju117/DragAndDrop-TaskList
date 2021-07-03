@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/DragAndDrop-TaskList/static/css/main.bedea802.chunk.css",
-    "main.js": "/DragAndDrop-TaskList/static/js/main.b5440acd.chunk.js",
-    "main.js.map": "/DragAndDrop-TaskList/static/js/main.b5440acd.chunk.js.map",
+    "main.js": "/DragAndDrop-TaskList/static/js/main.ac94cf67.chunk.js",
+    "main.js.map": "/DragAndDrop-TaskList/static/js/main.ac94cf67.chunk.js.map",
     "runtime-main.js": "/DragAndDrop-TaskList/static/js/runtime-main.6920e2b7.js",
     "runtime-main.js.map": "/DragAndDrop-TaskList/static/js/runtime-main.6920e2b7.js.map",
     "static/css/2.8cb7becf.chunk.css": "/DragAndDrop-TaskList/static/css/2.8cb7becf.chunk.css",
@@ -22,6 +22,6 @@
     "static/css/2.8cb7becf.chunk.css",
     "static/js/2.56c1574a.chunk.js",
     "static/css/main.bedea802.chunk.css",
-    "static/js/main.b5440acd.chunk.js"
+    "static/js/main.ac94cf67.chunk.js"
   ]
 }
