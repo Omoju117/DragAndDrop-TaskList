@@ -1,17 +1,20 @@
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 import { useState, VFC } from 'react';
 import { Item, Icon, Button } from 'semantic-ui-react';
 import { useDispatch, useSelector } from 'react-redux';
-// eslint-disable-next-line import/no-cycle
-import { Task } from '../templates/TaskList';
-// eslint-disable-next-line import/no-cycle
 import { TaskListState } from '../../reducer';
+import { Task } from '../../Data/data';
 
 /* ---------個別のタスクを表現するコンポーネント--------- */
 
 /* ----------タスクの型定義---------- */
+// export type Task = {
+//   id: number;
+//   title: string;
+//   mode: string;
+// };
+
 type Props = {
   targetTask: Task;
   index: number;

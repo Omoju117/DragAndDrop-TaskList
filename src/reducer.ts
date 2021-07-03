@@ -1,7 +1,6 @@
-/* eslint-disable import/no-cycle */
 import { Reducer } from 'redux';
 import { TaskListAction } from './actions';
-import { Task } from './component/templates/TaskList';
+import { Task } from './Data/data';
 
 export type TaskListState = Task[];
 export const initialState: TaskListState = [

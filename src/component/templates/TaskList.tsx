@@ -1,6 +1,4 @@
 /* eslint @typescript-eslint/no-unsafe-member-access: 0 */
-/* eslint no-alert: 0 */
-/* eslint @typescript-eslint/no-unsafe-call: 0 */
 // TODO event.targetを引数に指定できない方法を調査する。一旦問題が出ないことは確認済みなのでanyで回避。
 import { useState, VFC } from 'react';
 import { Item } from 'semantic-ui-react';
@@ -11,19 +9,13 @@ import ResetButton from '../atoms/ResetButton';
 import AddButton from '../atoms/AddButton';
 import InputForm from '../atoms/InputForm';
 import Introduction from '../atoms/Intoduction';
-// eslint-disable-next-line import/no-cycle
 import { TaskListState } from '../../reducer';
-// eslint-disable-next-line import/no-cycle
 import TaskBar from '../molecules/TaskBar';
+import { Task } from '../../Data/data';
 
 /* ---------タスクリスト本体のコンポーネント--------- */
 
 /* ----------タスクの型定義---------- */
-export type Task = {
-  id: number;
-  title: string;
-  mode: string;
-};
 
 type Props = {
   add?: (id: number, taskName: string) => void;

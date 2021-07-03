@@ -1,5 +1,4 @@
-// eslint-disable-next-line import/no-cycle
-import { Task } from './component/templates/TaskList';
+import { Task } from './Data/data';
 
 export const TaskListActionType = {
   ADD: 'ADD',
