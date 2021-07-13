@@ -8,10 +8,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import ResetButton from '../../component/atoms/ResetButton';
 import AddButton from '../../component/atoms/AddButton';
 import InputForm from '../../component/atoms/InputForm';
-import Introduction from '../../component/atoms/Intoduction';
-import { TaskListState } from '../../reducer';
+import { RootState } from '../../reducer';
 import TaskBar from '../../component/molecules/TaskBar';
 import { Task } from '../../Data/data';
+import SaveButton from '../../component/atoms/SaveButton';
+// import SaveButton from '../../component/atoms/SaveButton';
 
 /* ---------タスクリスト本体のコンポーネント--------- */
 
@@ -31,21 +32,27 @@ const TaskList: VFC<Props> = ({
   edit = () => undefined,
   refresh = () => undefined,
 }) => {
+  /* ------------Store,Reducerに関する処理------------ */
+  // Storeに格納してあるタスクリストの本体
+  const taskListState = useSelector<RootState, Task[]>(
+    (state: RootState) => state.taskList,
+  );
+
+  // dispatcher
+  const dispatch = useDispatch();
+
   /* --------状態(state)の定義------------- */
 
   // タスク名
   const [taskName, setTaskName] = useState<string>('');
   // タスクのid
-  const [idCnt, setIdCnt] = useState(1);
+  const [idCnt, setIdCnt] = useState(
+    taskListState.length > 0
+      ? taskListState[taskListState.length - 1].id + 1
+      : 0,
+  );
   // 追加ボタンの活性制御
   const [disabled, setDisabled] = useState(true);
-
-  /* ------------Store,Reducerに関する処理------------ */
-  // Storeに格納してあるタスクリストの本体
-  const taskListState = useSelector<TaskListState, Task[]>((state) => state);
-
-  // dispatcher
-  const dispatch = useDispatch();
 
   /* ------------タスクの追加に関する処理------------ */
   // ---タスクの追加
@@ -109,11 +116,13 @@ const TaskList: VFC<Props> = ({
     <>
       <div className="task-list-container">
         <InputForm
-          taskName={taskName}
+          inputValue={taskName}
+          placeholder="Enter any task that you have to do."
           onChangeHandler={(e) => handleValue(e.target)}
         />
         <AddButton addTask={addTask} disabled={disabled} />
         <ResetButton reset={reset} />
+        <SaveButton />
 
         <Item.Group>
           <Container
@@ -134,7 +143,6 @@ const TaskList: VFC<Props> = ({
             ))}
           </Container>
         </Item.Group>
-        <Introduction />
       </div>
     </>
   );

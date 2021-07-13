@@ -3,17 +3,20 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
+import { BrowserRouter } from 'react-router-dom';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import 'semantic-ui-css/semantic.min.css';
-import { initialState, taskListReducer } from './reducer';
+import { rootReducer } from './reducer';
 
-const store = createStore(taskListReducer, initialState);
+const store = createStore(rootReducer);
 
 ReactDOM.render(
-  <Provider store={store}>
-    <App />
-  </Provider>,
+  <BrowserRouter>
+    <Provider store={store}>
+      <App />
+    </Provider>
+  </BrowserRouter>,
   document.getElementById('root'),
 );
 // If you want to start measuring performance in your app, pass a function

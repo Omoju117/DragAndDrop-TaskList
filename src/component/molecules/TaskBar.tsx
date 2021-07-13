@@ -3,7 +3,7 @@
 import { useState, VFC } from 'react';
 import { Item, Icon, Button } from 'semantic-ui-react';
 import { useDispatch, useSelector } from 'react-redux';
-import { TaskListState } from '../../reducer';
+import { RootState } from '../../reducer';
 import { Task } from '../../Data/data';
 
 /* ---------個別のタスクを表現するコンポーネント--------- */
@@ -41,7 +41,9 @@ const TaskBar: VFC<Props> = ({
 
   /* ------------Store,Reducerに関する処理------------ */
   // Storeに格納してあるタスクリストの本体
-  const taskListState = useSelector<TaskListState, Task[]>((state) => state);
+  const taskListState = useSelector<RootState, Task[]>(
+    (state: RootState) => state.taskList,
+  );
 
   // dispatcher
   const dispatch = useDispatch();

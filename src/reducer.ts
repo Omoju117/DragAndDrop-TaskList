@@ -1,7 +1,8 @@
-import { Reducer } from 'redux';
-import { TaskListAction } from './actions';
+import { combineReducers, Reducer } from 'redux';
+import { LoginUserAction, TaskListAction } from './actions';
 import { Task } from './Data/data';
 
+// * -------------------TaskList--------------------- * //
 export type TaskListState = Task[];
 export const initialState: TaskListState = [
   {
@@ -10,12 +11,12 @@ export const initialState: TaskListState = [
     mode: 'display',
   },
   {
-    id: 99998,
+    id: 1,
     title: 'Happy Tasking!',
     mode: 'display',
   },
   {
-    id: 99999,
+    id: 2,
     title: '👌',
     mode: 'display',
   },
@@ -54,3 +55,27 @@ export const taskListReducer: Reducer<TaskListState, TaskListAction> = (
     }
   }
 };
+
+// * -------------------LoginUser--------------------- * //
+export type LoginUserState = string;
+export const loginUserReducer: Reducer<LoginUserState, LoginUserAction> = (
+  state: LoginUserState = 'default',
+  action: LoginUserAction,
+): LoginUserState => {
+  switch (action.type) {
+    case 'SET':
+      return action.loginUserName;
+    default: {
+      const _: never = action.type;
+
+      return state;
+    }
+  }
+};
+
+export type RootState = ReturnType<typeof rootReducer>;
+
+export const rootReducer = combineReducers({
+  taskList: taskListReducer,
+  loginUser: loginUserReducer,
+});

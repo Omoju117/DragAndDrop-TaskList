@@ -1,16 +1,18 @@
 /* -----タスクのリスト本体に関するスタイル----- */
 .task-list-container {
-  width: 700px;
+  position: relative;
+  left: 25%;
+  width: 50%;
   max-width: none;
-  margin-top: 48px;
-  margin-left: 400px;
-  font-size: 14px;
+  margin-top: 3%;
+  font-size: 88%;
 }
 
 .task {
+  width: 98%;
   height: 50px;
   padding: 10px;
-  margin: 5px;
+  margin: 4px;
   background-color: ivory;
   border: 1px solid burlywood;
   border-radius: 5px;
@@ -44,9 +46,21 @@
   font-size: 16px;
 }
 
+.task-list-container .olive {
+  width: 7%;
+}
+
+.task-list-container .google {
+  width: 12%;
+}
+
+.task-list-container .violet {
+  width: 11%;
+}
+
 /* ------入力フォームに関するスタイル------ */
 .input-form {
-  width: 400px;
+  width: 58%;
   height: 40px;
   margin-right: 4px;
   border: 2px solid orange;
@@ -97,10 +111,10 @@ input:focus::placeholder {
 /* ------Introduction------ */
 .introduction-space {
   position: absolute;
-  top: 60px;
-  left: 1080px;
-  width: 350px;
-  height: 350px;
+  top: 12%;
+  left: 74%;
+  width: 25%;
+  height: 47%;
   background: url(Introduction_image.png) center / cover;
   opacity: 1;
   transition: all 1s;
@@ -108,16 +122,18 @@ input:focus::placeholder {
 
 .introduction-space button {
   position: absolute;
-  top: 125px;
-  left: 175px;
+  top: 36%;
+  left: 47%;
+  width: 30%;
+  height: 11%;
 }
 
 .introduction-space-edit {
   position: absolute;
-  top: 200px;
-  left: 75px;
-  width: 350px;
-  height: 350px;
+  top: 28%;
+  left: 2%;
+  width: 25%;
+  height: 47%;
   background: url(Introduction_edit.png) center / cover;
   opacity: 1;
   transition: all 1s;
@@ -125,8 +141,10 @@ input:focus::placeholder {
 
 .introduction-space-edit button {
   position: absolute;
-  top: 190px;
-  left: 140px;
+  top: 54%;
+  left: 37%;
+  width: 30%;
+  height: 11%;
 }
 
 .introduction-space-none {
@@ -135,4 +153,36 @@ input:focus::placeholder {
 
 .event-invalid {
   pointer-events: none;
+}
+
+/* ------Sign In, Sign Up------ */
+.header-button-container {
+  padding-top: 1%;
+  margin-left: auto;
+}
+
+.header-button-container > * {
+  margin-left: 10px;
+}
+
+.sign-in-space {
+  position: relative;
+  left: 40%;
+  width: 40vw;
+  margin-top: 1vw;
+}
+
+.sign-in-space * {
+  margin-top: 0.5vw;
+}
+
+.sign-in-space button {
+  width: 58%;
+}
+
+/* -------- indicator -------- */
+.rai-spinner {
+  position: relative;
+  top: 30px;
+  left: 50%;
 }
