@@ -8,8 +8,9 @@ import { Task } from '../../Data/data';
 
 const SaveButton: VFC = () => {
   // const url = 'http://localhost:5000/api/tasks/';
-  const url =
-    'http://draganddroptasklist-env.eba-btryk2uf.ap-northeast-1.elasticbeanstalk.com/api/tasks/';
+  // const url =
+  //   'https://draganddroptasklist-env.eba-btryk2uf.ap-northeast-1.elasticbeanstalk.com/api/tasks/';
+  const url = 'https://omojuproduct.link/api/tasks/';
 
   const [signal, setSignal] = useState(0);
   const [isLoading, setIsLoading] = useState(false);

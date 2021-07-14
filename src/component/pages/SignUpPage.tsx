@@ -36,8 +36,9 @@ const SignUpPage: VFC = () => {
 
   /* ------------非同期通信に関する処理------------ */
   //   const url = 'http://localhost:5000/api/users/signUp';
-  const url =
-    'http://draganddroptasklist-env.eba-btryk2uf.ap-northeast-1.elasticbeanstalk.com/api/users/signUp';
+  //   const url =
+  //     'https://draganddroptasklist-env.eba-btryk2uf.ap-northeast-1.elasticbeanstalk.com/api/users/signUp';
+  const url = 'https://omojuproduct.link/api/users/signUp';
 
   const [signal, setSignal] = useState(0);
 
@@ -72,8 +73,12 @@ const SignUpPage: VFC = () => {
     // Sign Upボタンを押下した時にだけ非同期通信を実行。
     if (signal > 0) {
       setErrorMsgCode('');
+      // ユーザ名かパスワードに何も入力されていなかった場合、エラーメッセージを表示して中断
       if (userName.length === 0 || password.length === 0) {
         setErrorMsgCode('ErrorCode:002');
+        setSignal(0);
+
+        return;
       }
       void signUp();
       setIsLoading(false);

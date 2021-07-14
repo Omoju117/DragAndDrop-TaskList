@@ -7,6 +7,7 @@ import { addTask, deleteTask, editTask, refreshTask } from '../../actions';
 import Introduction from '../atoms/Intoduction';
 import SignInButton from '../atoms/SignInButton';
 import SignUpButton from '../atoms/SignUpButton';
+import LogoutButton from '../atoms/LogoutButton';
 import { RootState } from '../../reducer';
 
 /* ----- 表示するページの本体 ------ */
@@ -23,7 +24,7 @@ const Home: VFC = () => {
           signUp={<SignUpButton />}
         />
       ) : (
-        <ApplicationHeader />
+        <ApplicationHeader signUp={<LogoutButton />} />
       )}
       <IntroductionEdit />
       <TaskList

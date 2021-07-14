@@ -35,8 +35,9 @@ const SignInPage: VFC = () => {
 
   /* ------------非同期通信に関する処理------------ */
   //   const url = 'http://localhost:5000/api/users/signIn';
-  const url =
-    'http://draganddroptasklist-env.eba-btryk2uf.ap-northeast-1.elasticbeanstalk.com/api/users/signIn';
+  //   const url =
+  //     'https://draganddroptasklist-env.eba-btryk2uf.ap-northeast-1.elasticbeanstalk.com/api/users/signIn';
+  const url = 'https://omojuproduct.link/api/users/signIn';
 
   const [signal, setSignal] = useState(0);
 
