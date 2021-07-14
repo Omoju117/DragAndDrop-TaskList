@@ -1,10 +1,10 @@
 # Drag&Drop TaskList
 
-アーキテクチャ
-FrontSide: React + TypeScript
-ServerSide: SpringBoot(Java), MyBatis
-DataBase: Postgresql
-Iaas: AWS (Elastic Beanstalk, RDS etc...)
+## アーキテクチャ  
+FrontSide: React + TypeScript  
+ServerSide: SpringBoot(Java), MyBatis  
+DataBase: Postgresql  
+Iaas: AWS (Elastic Beanstalk, RDS etc...)  
 
 https://omoju117.github.io/DragAndDrop-TaskList/
 
